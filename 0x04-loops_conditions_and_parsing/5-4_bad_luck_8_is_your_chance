@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# using while loop to print "Best School' 9 times
+# and print "bad luck" at the 4th iteration &
+# "good luck" at the 8th iteration
+
+i=1
+while [ $i -le 10 ]
+do
+	if [ $i -eq 4 ]; then
+		echo "bad luck"
+		i=$(( i  + 1 ))
+		continue
+	elif [ $i -eq 8 ]; then
+		echo "good luck"
+		i=$(( i  + 1 ))
+		continue
+		continue
+	fi
+	echo "Best School"	
+	i=$(( i + 1 ))
+done
+
