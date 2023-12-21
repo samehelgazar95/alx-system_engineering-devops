@@ -8,15 +8,11 @@ while [ $i -le 10 ]
 do
 	if [ $i -eq 4 ]; then
 		echo "bad luck"
-		i=$(( i  + 1 ))
-		continue
 	elif [ $i -eq 8 ]; then
 		echo "good luck"
-		i=$(( i  + 1 ))
-		continue
-		continue
+	else
+		echo "Best School"	
 	fi
-	echo "Best School"	
 	i=$(( i + 1 ))
 done
 
