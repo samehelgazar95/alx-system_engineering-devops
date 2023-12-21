@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# This script uses for loop to print "Best School" 10 times
+
 
 i=0
 for ((; i<10; i++))
