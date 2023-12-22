@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Display the content of the dir
+
+for f in *
+do
+	var=$(echo "$f" | cut -d"-" -f2)
+	echo "$var"
+done
