@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# loop until press CTRL+c
+
+trap SIGINT
+while true
+do
+echo "To infinity and beyond"
+done
+
