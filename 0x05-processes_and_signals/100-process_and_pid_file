@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Task 100
+
+trap "rm -f /var/run/myscript.pid" EXIT
+
+echo $$ > /var/run/myscript.pid
+
+trap 'echo "I hate the kill command"' SIGTERM
+trap 'echo "Y U no love me?!"; exit 1' SIGINT
+
+while true
+do
+	echo "To infinity and beyond"
+done
+
