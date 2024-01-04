@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#Doing some magic with nc & telnet
+
+sudo nc -l -p 98
