@@ -1,0 +1,54 @@
+https://imgur.com/gallery/u7Gm1zV
+
+**about this infrastructure:**
+[1]
+
+- Server is computer (virtual or physical) that contains the code files and
+  the data and serves the application or the web page.
+- it's usually located in datacenters and is accessible through the internet
+  and runs OS (usually: Linux).
+
+[2]
+
+- The role of the domain name is to identify the websites and other internet
+  resources with a text based label than the numerical protocols, which make
+  it easier for human to memorize it.
+
+[3]
+
+- A Record
+
+[4]
+
+- Web server is responsible for hosting the static content and responding via HTML.
+- Use only HTTP & HTTPS protocols
+-
+
+[5]
+
+- Application server is responsible for hosting the static and dynamic content.
+- Use several protocols, including HTTP & HTTPS protocols
+
+[6]
+
+- DataBase role is and flexible way to store date for easy retrieving and manipulation.
+
+[7]
+
+- Web server through the HTTP or HTTPS.
+
+**the issues are with this infrastructure:**
+
+- SPOF:
+  there is an SPOF at the server, as there is only one server handling the requests
+  and without any load balancers or firewalls or any backup servers, so it's easy
+  for the sever to burn out, and be out of service
+
+- Downtime when maintenance needed:
+  as there is only one server, so there will be a great issue when deploying a new code,
+  as we have to restart the whole server or maybe shutting down the server until finishing
+  updating the code, which will cause a very low level of availability.
+
+- Cannot scale if too much incoming traffic because there is only one server handling
+  handling everything alone, so if the traffic is much more than this server can afford,
+  it will burn out and maybe be stop providing any services.
