@@ -1,0 +1,58 @@
+https://app.eraser.io/workspace/DI2w4uhsTNDM55RvCBAv
+
+**You must be able to explain some specifics about this infrastructure:**
+[1] For every additional element, why you are adding it:
+
+- Added 3 Firewalls: to protect the system and accept or refuse some requests
+  based on some rules, this will reducing the chances to be hacked.
+
+- Added 1 SSL: added an SSL to use the HTTPS and make the connection between
+  the browser and the web server secured, this will encrypt the data transferred
+  between and make it harder to a hacker to view these data.
+
+- Added 3 Monitors: to always keep an eye on the status of the servers and notify
+  the load balancer with the status directly, in case if on server is down the load
+  balancer will stop sending any more request until the monitor notify again when it is up.
+
+[2] What are firewalls for?:
+
+- Firewalls are a secured network between the private and public network, it could
+  be hardware device or a software program or both, it blocks the network traffic based on
+  some security rules and it could also limiting the using of internet like what to browsing
+  or downloading, it could be use in some countries like this to control over the people like in China with the great firewall.
+
+[3] Why is the traffic served over HTTPS?:
+
+- the traffic served over HTTPS to make the connection between the browser and the web server secured by using the secure port 443.
+
+[4] What monitoring is used for?:
+
+- Monitoring is helping to keep maintaining high quality and also helps to continue
+  improving the performance
+
+[5] How the monitoring tool is collecting data?
+
+- Deploying 3 monitors (1 for the load balancer and 2 for the double servers) will helps us keep tracking the customers' requests performance which will help us to make a decision wether to scale up the infrastructure or not.
+
+"What cannot be measured, Cannot be improved"
+
+[6] How the monitoring tool is collecting data?: .........
+
+[7]Explain what to do if you want to monitor your web server QPS:
+
+- QPS: Query Per Second, is a measure of the rate of traffic of a web server that serving a specific server, it's important to keeps us aware of how much queries that the server is receiving and make decision based on this to scale up or not.
+
+**You must be able to explain what the issues are with this infrastructure:**
+[1] Why terminating SSL at the load balancer level is an issue?:
+
+- If the SSL is terminated, the website won't be recognized as secured (HTTPS), and this will make the connection between the browser and the web server not secured and the data won't be encrypted which makes it easy for hacker to view the transferred data.
+  it could also cause that the firewall will not be able to operate effectively, as it's more effective when the data is encrypted.
+
+[2] Why having only one MySQL server capable of accepting writes is an issue?:
+
+- SPOF: could be a critical single point of failure, any failure or down in this database will cause a complete halt in the all write permissions.
+- Scalability and high-availability issues: it will be hard to scale up the system while there is only on db to write capable to write at the same time.
+
+[3] Why having servers with all the same components (database, web server and application server) might be a problem?:
+
+- it will cause a homogeneous failures which means that if a specific server is down or has a failure for any reason, other servers are susceptible to fail for the same reason.

@@ -1,0 +1,54 @@
+https://app.eraser.io/workspace/YIiKEL0mxW16SUzUOITI
+
+**You must be able to explain some specifics about this infrastructure:**
+[1] For every additional element, why you are adding it:
+
+- Added Additional Server and Load Balancer:
+  The new configuration has one more master server to load, and both are working
+  together based on the active-active setup, and the load will be distributed between
+  them using the additional load balancer
+
+[2] What distribution algorithm your load balancer is configured with and how it works?:
+
+- Algo of load balance: It's algo of the load balancer is round-robin algo, which means the queries requested will be distributed sequentially through the two master server one after another.
+
+[3] Is your load-balancer enabling an Active-Active or Active-Passive setup, explain the difference between both?:
+
+- The load-balancer is enabling active-active setup.
+- Active-Active cluster:
+  means that both servers are active at the same time, and both
+  of them are receiving the same number of queries sequentially one after another,
+  in order to prevent the overload.
+- Active-Passive cluster:
+  means there is an primary active server and another secondary standby server,
+  the primary one is receiving all the requests from the load balancer,
+  until something bad happen to it, then the load balancer switches the
+  requests to the passive server, and keeps receive requests until the primary
+  one is going back to life, and then the load balancer switches back the queries
+  to the primary one.
+  there's a monitor that monitoring the status of the both servers and send status
+  to the load balancer, and to the servers themselves.
+
+[4] How a database Primary-Replica (Master-Slave) cluster works?:
+
+- .......
+
+[5] the difference between the Primary node and the Replica node in regard to the application?:
+
+- ........
+
+**You must be able to explain what the issues are with this infrastructure:**
+[1] Where are SPOF:
+
+- There is an SPOF at the load balancer, as if it fails the whole system will fail
+
+[2] Security issues (no firewall, no HTTPS):
+
+- No firewall so the system design is not secure and hacker can easily access the server.
+- No HTTPS: as the design does not contain SSL, so there is no an https protocols,
+  and the text won't be encrypted.
+
+[3] No Monitoring:
+
+- as there is no any monitors in the server, so the load balancer or
+  other server would not know if there is a server down or not, and the load balancer could keep sending requests to a down server which will cause a problem and responses to fail.
