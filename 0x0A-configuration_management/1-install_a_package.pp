@@ -4,7 +4,7 @@ package{ 'python':
   ensure => '3.8.10'
 }
 package{ 'werkzeug':
-  ensure   => present,
+  ensure => present,
 }
 
 package{ 'flask':
