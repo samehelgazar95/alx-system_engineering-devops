@@ -2,7 +2,6 @@
 
 package{ 'werkzeug':
   ensure   => present,
-  provider => 'pip3'
 }
 
 package{ 'flask':
