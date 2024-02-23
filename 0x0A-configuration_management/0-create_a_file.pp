@@ -1,4 +1,4 @@
-# Puppet manifest to create and configure file
+# Puppet manifest to create
 
 file{ '/tmp/school':
 ensure  => 'file',
