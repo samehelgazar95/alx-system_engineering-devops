@@ -2,4 +2,4 @@
 # SSH command to connect to the server
 
 
-ssh -l ~/.ssh/school ubuntu@100.25.152.65
+ssh -i ~/.ssh/school ubuntu@100.25.152.65
