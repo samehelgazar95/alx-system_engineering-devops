@@ -10,8 +10,5 @@ file {'Declare_identity_file':
 file {'Turn_off_passwd_auth':
     ensure => present,
     path   => '~/.ssh/config',
-    line   => '\
-    PasswordAuthentications no
-    PreferredAuthentications publickey
-    '
+    line   => "PasswordAuthentication no\nPreferredAuthentications publickey"
 }
