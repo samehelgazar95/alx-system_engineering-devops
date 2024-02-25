@@ -124,7 +124,7 @@
     - **Create alias by appending the configs**
 
       ```ssh
-      Host testhost
+        Host testhost
           HostName your_domain
           Port 4444
           User demo
@@ -132,12 +132,21 @@
 
       - You can then simply connect with:
         ```bash
-          $ ssh testhost
+            $ ssh testhost
         ```
 
     - **To prevent the timeout of the session**
 
       ```ssh
-      Host testhost
+        Host testhost
           ServerAliveInterval  120
+      ```
+
+    - **To Specify the key path and configuring to connect through the public key not password**
+
+      ```ssh
+        Host testhost
+          IdentifyFile ~/.ssh/school
+          PreferredAuthentications publickey
+          PasswordAuthentications no
       ```
