@@ -8,8 +8,6 @@ file {'~/.ssh/config':
     mode    => '0600',
     content => "\
     Host server_alias
-        HostName server_ip
-        User your_username
         IdentityFile ~/.ssh/school
         PreferredAuthentications publickey
         PasswordAuthentication no
