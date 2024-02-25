@@ -2,14 +2,19 @@
 
 
 file {'~/.ssh/config':
-    ensure => 'file',
-    owner   => 'username',
-    group   => 'username',
-    mode    => '0600',
-    content => "\
-    Host server_alias
-        IdentityFile ~/.ssh/school
-        PreferredAuthentications publickey
-        PasswordAuthentication no
-    ",
+    ensure => present,
+    line => 'IdentifyFile ~/.ssh/school',
+    path => '~/.ssh/config'
+}
+
+file {'~/.ssh/config':
+    ensure => present,
+    line => 'PreferredAuthentications publickey',
+    path => '~/.ssh/config'
+}
+
+file {'~/.ssh/config':
+    ensure => present,
+    line => 'PasswordAuthentications no',
+    path => '~/.ssh/config'
 }
