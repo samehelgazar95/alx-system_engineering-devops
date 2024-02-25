@@ -3,18 +3,18 @@
 
 file {'~/.ssh/config':
     ensure => present,
-    line => 'IdentifyFile ~/.ssh/school',
-    path => '~/.ssh/config'
+    line   => 'IdentifyFile ~/.ssh/school',
+    path   => '~/.ssh/config'
 }
 
 file {'~/.ssh/config':
     ensure => present,
-    line => 'PreferredAuthentications publickey',
-    path => '~/.ssh/config'
+    line   => 'PreferredAuthentications publickey',
+    path   => '~/.ssh/config'
 }
 
 file {'~/.ssh/config':
     ensure => present,
-    line => 'PasswordAuthentications no',
-    path => '~/.ssh/config'
+    line   => 'PasswordAuthentications no',
+    path   => '~/.ssh/config'
 }
