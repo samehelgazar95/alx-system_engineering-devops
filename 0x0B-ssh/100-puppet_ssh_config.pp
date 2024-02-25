@@ -1,14 +1,14 @@
 # Puppet manifest to setup configs to ssh
 
 
-file {'Declare_identity_file':
+file_line {'Declare identity file':
     ensure => present,
     path   => '~/.ssh/config'
     line   => 'IdentityFile ~/.ssh/school',
 }
 
-file {'Turn_off_passwd_auth':
+file_line {'Turn off passwd auth':
     ensure => present,
     path   => '~/.ssh/config',
-    line   => "PasswordAuthentication no\nPreferredAuthentications publickey"
+    line   => "PasswordAuthentication no"
 }
