@@ -20,45 +20,41 @@
 
 ## Generating SSH Keys
 
-```bash
-ssh-keygen
-```
-
 - This command line is to generate a rsa keys, you can change the default dir if you want which is (~/.ssh), and you can set passphrase or leave it blank (Note that you will need this passphrase every time you use the private key)
 
-  <br/>
-
-```bash
-ssh-keygen -b 4096
-```
+  ```bash
+    ssh-keygen
+  ```
 
 - SSH keys are 2048 bits by default, but u can change it by using -b arg with the needed bits numbers
-  <br/>
 
-```bash
-ssh-keygen -p
-```
+  ```bash
+    ssh-keygen -b 4096
+  ```
+
+- To set passphrase while generating
+
+  ```bash
+    ssh-keygen -N 'passphrase'
+  ```
 
 - To change the passphrase of the key, you can use this arg -p
-  <br/>
 
-```bash
-ssh-keygen -l
-```
+  ```bash
+    ssh-keygen -p
+  ```
 
-- To show the fingerprint of the key, you can use the arg -l
-- the fingerprint contains the bit-length, the account, the host and the algo used
+- To show the fingerprint of the key, you can use the arg -l [the fingerprint contains the bit-length, the account, the host and the algo used]
 
-<br/>
-
-```bash
-ssh-copy-id username@remote_host
-cat ~/.ssh/id_rsa.pub | ssh username@remote_host "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
-```
+  ```bash
+    ssh-keygen -l
+  ```
 
 - there are 3 ways to copy the public key to the server, you can do it locally using one of the previous commands, or manually coping it to the server to path (~/.ssh/authorized_keys)
-
-<br/>
+  ```bash
+    ssh-copy-id username@remote_host
+    cat ~/.ssh/id_rsa.pub | ssh username@remote_host "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+  ```
 
 ## Basic Connection Instructions
 
@@ -104,7 +100,6 @@ cat ~/.ssh/id_rsa.pub | ssh username@remote_host "mkdir -p ~/.ssh && cat >> ~/.s
 - **Enabling Root to run command on the fly**
 
   - Append >> PermitRootLogin forced-commands-only
-    <br/>
 
   ```bash
     sudo nano /root/.ssh/authorized_keys
@@ -117,8 +112,6 @@ cat ~/.ssh/id_rsa.pub | ssh username@remote_host "mkdir -p ~/.ssh && cat >> ~/.s
 ```bash
   sudo service ssh restart
 ```
-
-<br/>
 
 - ## Client-Side Configuration Options:
 
