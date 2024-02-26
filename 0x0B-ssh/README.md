@@ -9,14 +9,16 @@
 - **Shell Tunnel:** And through the session lifetime, any command you type will be sent to the server through a shell encrypted tunnel and executed there (in the server).
   <br/>
 - **SSH Connection**: the SSH connection is implemented using a client-server model,
-  - which means that the server must have a piece of software called **server-daemon** which is responsible for listening for the connection through a specific port, authenticates the connection request and create the appropriate environment if the client's credentials are correct.
-  - and the client's machine must have an **SSH client**, that knows how to communicate using SSH protocol and it's responsible for sending client's data to request for a connection.
+  - which means that the server must have a piece of software called **server-daemon -SSHD-** which is responsible for listening for the connection through a specific port, authenticates the connection request and create the appropriate environment if the client's credentials are correct.
+  - and the client's machine must have an **SSH client -SSH-**, that knows how to communicate using SSH protocol and it's responsible for sending client's data to request for a connection.
     <br/>
 - **How it works?**: First the client generates rsa keys (public and private), they will be created in the ~/.ssh dir called by default id_rsa.pub and id_rsa, then you have to share the public key in the server, copy it in a file called ~/.ssh/authorized_keys in the server (!DON'T SHARE THE PRIVATE KEY, NEVER), the server and the client will use the public key to encrypt and decrypt the messages sent between them.
   <br/>
-- BTW RSA is the default key type, there are also DSA, and ECDSA
-  <br/>
-  <br/>
+- **Defaults:**
+  - port 22 is the default port for ssh, port 21 is the default for sftp
+  - RSA is the default key type, there are also DSA, and ECDSA
+    <br/>
+    <br/>
 
 ## Generating SSH Keys
 
@@ -76,7 +78,7 @@
 - ### To change any configurations related in the server, First open or create this file:
 
   ```bash
-    sudo nano /etc/ssh/ssh_config
+    sudo nano /etc/ssh/sshd_config
   ```
 
 - **Disabling Password Authentication**
