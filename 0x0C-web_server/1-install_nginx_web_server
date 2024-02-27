@@ -4,7 +4,7 @@
 sudo apt-get update
 sudo apt-get install nginx -y
 
-sudo echo "
+echo "
 server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
@@ -16,10 +16,9 @@ server {
 
 	server_name _;
 
-	location / {
+	location = / {
 		return 200 "Hello World!";	
-		try_files $uri $uri/ =404;
 	}
-}" > /etc/nginx/sites_available/default
+}" | sudo tee /etc/nginx/sites-available/default
 
 sudo nginx -S reload
