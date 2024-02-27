@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 # Updating packages
 # Installing NGINX
-# Firewall Settings
 # Echoing hello world
 # Start NGINX
 
 
 sudo apt-get -y  update
 sudo apt-get -y  install nginx
-echo 'Hello World!' | sudo tee  /var/www/html/index.nginx-debian.html
+echo 'Hello World!' | sudo tee /var/www/html/index.html
 sudo service nginx start
