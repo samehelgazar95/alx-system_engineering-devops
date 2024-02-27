@@ -1,5 +1,25 @@
 #!/usr/bin/env bash
 # Installing NGINX
 
-
+sudo apt-get update
 sudo apt-get install nginx -y
+
+sudo echo "
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root /var/www/html;
+
+	# Add index.php to the list if you are using PHP
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name _;
+
+	location / {
+		return 200 "Hello World!";	
+		try_files $uri $uri/ =404;
+	}
+}" > /etc/nginx/sites_available/default
+
+sudo nginx -S reload
