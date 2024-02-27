@@ -21,4 +21,4 @@ server {
 	}
 }" | sudo tee /etc/nginx/sites-available/default
 
-sudo nginx -S reload
+sudo nginx -s reload
