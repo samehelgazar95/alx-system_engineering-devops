@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
-# Redirecting /redirect_me to youtube
+# Updating packages
+# Installing NGINX
+# Echoing hello world
+# Start NGINX
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
 
-ufw allow 'Nginx HTTP'
+sudo apt-get -y  update
+sudo apt-get -y  install nginx
+echo 'Hello World!' | sudo tee /var/www/html/index.html
+sudo service nginx start
 
 sudo sed -i '/server_name _/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
 
-sudo service nginx start
+sudo service nginx restart
