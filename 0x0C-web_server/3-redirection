@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Redirecting /redirect_me to youtube
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+
+sudo sed 'a/server_name /\trewrite ^/redirect_me$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;/' /etc/nginx/sites-available/default
+
+sudo service nginx start
