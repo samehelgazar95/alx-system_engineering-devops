@@ -1,19 +1,20 @@
 ## Load Balancer
 
-### **Load Balancer Algorithms:<br>**
+### <u>Load Balancer Algorithms:</u>
 
 1. Weighted Scheduling Algo<br>![weighted_scheduling_algo](https://i.imgur.com/LvjwmwI.png)
 2. Round Robin Scheduling<br>![round_robin_algo](https://i.imgur.com/hGJdtsT.png)
 3. Least Connection First Scheduling:<br> It's like the round robin, but it forward the requests to the server with least requests not roundly.
    <br>&emsp;**There are other algos beside those!**<br>
 
-**Load Balancer Software:<br>**
+### <u>Load Balancer Software:</u>
 
 1. **HAProxy**: TCP or HTTP (Default is TCP).
 2. **NGINX**: HTTP load balancer with SSL termination support and TCP, UDP too (Default is HTTP).
 3. **mod_athena**: Apache based HTTP load balancer (Default is HTTP).
 
-**Load Balancers Implementation:<br>**
+### <u>Load Balancers Implementation:</u>
+
 Hardware load balancers are implemented on EITHER Layer 4 (Transport Layer) OR Layer 7 (Application Layer) of OSI model (Open Systems Interconnection).<br>![layer4_layer7](https://i.imgur.com/9xoYhPB.png)
 
 **&emsp; A- Layer 4 Based Configurations:**<br>
@@ -43,7 +44,7 @@ https://www.thegeekstuff.com/2016/01/load-balancer-intro/ <br>
 
 ## HAProxy
 
-### Basic components that are used in load balancing:
+### <u>Basic components that are used in load balancing:</u>
 
 **Access Control List (ACL):**<br>
 
@@ -98,7 +99,7 @@ backend blog-backend
   - ACLs
   - _use_back_ rules, which defines which backend server to process the request, And/Or default_backend rule that handles the default route
 
-### Basic types of load balancing:
+### <u>Basic types of load balancing:</u>
 
 **No Loading Balance:**<br>![no_load_balancing](https://i.imgur.com/wNWeqaB.png)
 
@@ -126,14 +127,14 @@ backend blog-backend
     default_backend  web-backend
   ```
 
-### Load balancing Algorithms:
+### <u>Load balancing Algorithms:</u>
 
 **roundrobin Algorithm**
 **leastconn Algorithm** (Lease Connection First Scheduling)
 **Weighted Scheduling Algorithm**
 **roundrobin Algorithm** (This will insure that the same user will connect to the same server, this is achieved through appsession)
 
-### High Availability:
+### <u>High Availability:</u>
 
 - In the previous designs the load balancer was a SOF (Single Point of Failure), so we have to redundant the load balancer like in the coming image to achieve the high availability.
 - Here we are achieving the Active/Passive HA by using two load balancers, one is active and another is passive with a health detector in between and once the health detector detects that one load balancer is not working properly, it will forward the requests to the another one until the first back to work normally, then it will forward the requests to it again.
