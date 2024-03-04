@@ -4,7 +4,7 @@
 
 1. Weighted Scheduling Algo<br>![weighted_scheduling_algo](https://i.imgur.com/LvjwmwI.png)
 2. Round Robin Scheduling<br>![round_robin_algo](https://i.imgur.com/hGJdtsT.png)
-3. Least Connection First Scheduling<br>
+3. Least Connection First Scheduling:<br> It's like the round robin, but it forward the requests to the server with least requests not roundly.
    &emsp;**There are other algos beside those!**<br>
 
 **Load Balancer Software:<br>**
