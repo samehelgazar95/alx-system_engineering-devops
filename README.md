@@ -1,6 +1,6 @@
 ## Load Balancer
 
-#### **Load Balancer Algorithms:<br>**
+### **Load Balancer Algorithms:<br>**
 
 1. Weighted Scheduling Algo<br>![weighted_scheduling_algo](https://i.imgur.com/LvjwmwI.png)
 2. Round Robin Scheduling<br>![round_robin_algo](https://i.imgur.com/hGJdtsT.png)
