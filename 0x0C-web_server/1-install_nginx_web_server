@@ -2,22 +2,20 @@
 # Instaling Nginx
 
 
-echo -e "Updating and installing Nginx and starting it.\n"
+echo -e "Updating sys, installing Nginx and starting it.\n"
 sudo apt-get -y  update
 sudo apt-get -y  install nginx
 sudo service nginx start
 
 # By default FireWall blocks the incoming traffic over HTTP
-# For security reasons, so we need to allowing this
+# on Nginx for security reasons, so we need to allowing this
 echo -e "Allowing incoming traffic through HTTP"
 sudo ufw allow "Nginx HTTP"
 
-# Give ownership to the user for easy accessing and editing
+# Task 1: Give ownership to the user for easy accessing and editing
 sudo chown -R "$USER":"$USER" /var/www/html
 sudo chown -R 755 /var/www
-
-cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
-
+cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.backup
 echo 'Hello World!' | sudo tee /var/www/html/index.nginx-debian.html
 
 sudo service nginx restart
