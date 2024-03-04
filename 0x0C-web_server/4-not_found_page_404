@@ -8,7 +8,7 @@ sudo apt-get -y install nginx;
 sudo ufw allow 'Nginx HTTP'
 
 echo 'Hello World!' | sudo tee /var/www/html/index.html
-echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/page_404.html
+echo "Ceci n'est pas une page" > /usr/share/nginx/html/page_404.html
 sudo service nginx start
 
 sudo sed -i '/server_name _/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
