@@ -143,4 +143,4 @@ backend blog-backend
 <br>
 
 **Source:**
-https://www.digitalocean.com/community/tutorials/an-introduction-to-haproxy-and-load-balancing-concepts#high-availability
+https://www.digitalocean.com/community/tutorials/an-introduction-to-haproxy-and-load-balancing-concepts
