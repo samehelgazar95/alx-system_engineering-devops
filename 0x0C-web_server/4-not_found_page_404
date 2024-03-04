@@ -9,7 +9,7 @@ sudo ufw allow 'Nginx HTTP'
 
 echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/page_404.html
 
-sudo sed -i "/location / \{/ierror_page 404 /page_404.html;\n\t
+sudo sed -i "error_page 404 /page_404.html;\n\t
 		location = /page_404.html {
 		root /usr/share/nginx/html;\n\t
 	        internal;\n\t
