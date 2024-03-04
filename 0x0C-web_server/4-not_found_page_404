@@ -1,47 +1,21 @@
 #!/usr/bin/env bash
+# Handing error 404 page
 
-# Update package lists
-sudo apt update
 
-# Install Nginx without root for the entire script (safer)
-sudo apt install nginx
+sudo apt-get -y update;
+sudo apt-get -y install nginx;
 
-# Allow Nginx traffic through firewall
-ufw allow 'Nginx HTTP'
+sudo ufw allow 'Nginx HTTP'
 
-# Create basic index and error pages
-echo 'Hello World!' > /var/www/html/index.html
+echo 'Hello World!' | sudo tee /var/www/html/index.html
 echo "Ceci n'est pas une page" > /usr/share/nginx/html/page_404.html
+sudo service nginx start
 
-# Start Nginx service
-sudo systemctl start nginx
+sudo sed -i '/server_name _/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+sudo sed -i "/location / \{/ierror_page 404 /page_404.html;\n\t
+		location = /page_404.html {
+		root /usr/share/nginx/html;\n\t
+	        internal;\n\t
+   		 }" /etc/nginx/sites-available/default
 
-# Configure Nginx redirect and error handling (using a temporary file)
-cat <<EOF > /tmp/nginx_config.conf
-server {
-  listen 80;
-  server_name _;
-
-  rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
-
-  location / {
-    root /var/www/html;
-    index index.html index.htm;
-    error_page 404 /page_404.html;
-  }
-
-  location = /page_404.html {
-    root /usr/share/nginx/html;
-    internal;
-  }
-}
-EOF
-
-# Move the configuration file to the correct location
-sudo mv /tmp/nginx_config.conf /etc/nginx/sites-available/default
-
-# Reload Nginx configuration (avoiding potential restart issues)
-sudo systemctl reload nginx
-
-# Remove temporary file (optional)
-rm /tmp/nginx_config.conf
+sudo service nginx restart
