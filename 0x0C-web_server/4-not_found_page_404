@@ -32,15 +32,14 @@ server {
         listen 80 default_server;
         listen [::]:80 default_server;
 
-        rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
-
         root /var/www/html;
 
         index index.html index.htm index.nginx-debian.html;
-		error_page 404 /error_404.html;
 
         server_name _;
 
+        rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
+		error_page 404 /error_404.html;
         location / {
                 try_files $uri $uri/ =404;
         }
