@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-# Install HAProxy
+# Installing HAProxy
 
-Helllooooooooo PITCH
-IAM THE GENIUS
+echo -e "\t>>> Updating sys, installing HAProxy and starting it...\n"
+sudo apt -y  update
+sudo apt install haproxy
+sudo service haproxy start
 
+
+
+echo -e "\n\t>>> Completed.\n"
