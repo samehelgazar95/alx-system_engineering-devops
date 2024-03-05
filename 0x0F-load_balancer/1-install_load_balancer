@@ -6,15 +6,21 @@ sudo apt -y  update
 sudo apt -y install haproxy
 sudo service haproxy start
 
+echo -e "\n\t>>> Adding the configurations to /etc/haproxy/haproxy.cfg...\n"
 sudo tee /etc/haproxy/haproxy.cfg >> /dev/null << 'EOF'
 frontend igazar-frontend
     bind *:80
     mode http
-    default_backend igazar-backend
-backend igazar-backend
+    default_backend igazar-tech-backend
+backend igazar-tech-backend
     balance roundrobin
     server web-01 100.25.152.65:80 check
     server web-02 52.3.242.252:80 check
 EOF
+
+echo -e "\n\t>>> Adding the configurations to /etc/default/haproxy...\n"
+echo "ENABLED=1" | sude tee /etc/default/haproxy
+
+sudo service haproxy restart
 
 echo -e "\n\t>>> Completed.\n"
