@@ -1,21 +1,52 @@
 #!/usr/bin/env bash
-# Handing error 404 page
+# Redirecting to youtube
 
 
-sudo apt-get -y update;
-sudo apt-get -y install nginx;
-
-sudo ufw allow 'Nginx HTTP'
-
-echo 'Hello World!' | sudo tee /var/www/html/index.html
-echo "Ceci n'est pas une page" > /usr/share/nginx/html/page_404.html
+echo -e "\t>>> Updating sys, installing Nginx and starting it...\n"
+sudo apt-get -y  update
+sudo apt-get -y  install nginx
 sudo service nginx start
 
-sudo sed -i '/server_name _/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
-sudo sed -i "/location / \{/ierror_page 404 /page_404.html;\n\t
-		location = /page_404.html {
-		root /usr/share/nginx/html;\n\t
-	        internal;\n\t
-   		 }" /etc/nginx/sites-available/default
+# By default FireWall blocks the incoming traffic over HTTP
+# on Nginx for security reasons, so we need to allowing this
+echo -e "\n\t>>> Make FireWall to allow incoming traffic through HTTP...\n"
+sudo ufw allow "Nginx HTTP"
+
+echo -e "\n\t>>> Backing up files & Setting up configurations...\n"
+
+# Give ownership to the user for easy accessing and editing and backing up
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.backup
+sudo chown -R "$USER":"$USER" /etc/nginx
+sudo chmod -R 755 /etc/nginx
+cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.backup
+
+# Task 1: Hello World
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
+
+# Task 3 - 4: Redirecting, Error_404
+echo "Ceci n'est pas une page" > /usr/share/nginx/html/error_404.html
+sudo tee /etc/nginx/sites-available/default > /dev/null << 'EOF'
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
+		error_page 404 /error_404.html;
+
+        root /var/www/html;
+
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name _;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+EOF
 
 sudo service nginx restart
+
+echo -e "\n\t>>> Completed.\n"
