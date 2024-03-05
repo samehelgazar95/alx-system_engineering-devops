@@ -3,9 +3,18 @@
 
 echo -e "\t>>> Updating sys, installing HAProxy and starting it...\n"
 sudo apt -y  update
-sudo apt install haproxy
+sudo apt -y install haproxy
 sudo service haproxy start
 
-
+sudo tee /etc/haproxy/haproxy.cfg >> /dev/null << 'EOF'
+frontend igazar-frontend
+    bind *:80
+    mode http
+    default_backend igazar-backend
+backend igazar-backend
+    balance roundrobin
+    server web-01 100.25.152.65:80 check
+    server web-02 52.3.242.252:80 check
+EOF
 
 echo -e "\n\t>>> Completed.\n"
