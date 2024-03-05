@@ -19,8 +19,9 @@ backend igazar-tech-backend
 EOF
 
 echo -e "\n\t>>> Adding the configurations to /etc/default/haproxy...\n"
-echo "ENABLED=1" | sude tee /etc/default/haproxy
+echo "ENABLED=1" | sudo tee /etc/default/haproxy
 
 sudo service haproxy restart
+sudo service haproxy enable
 
 echo -e "\n\t>>> Completed.\n"
