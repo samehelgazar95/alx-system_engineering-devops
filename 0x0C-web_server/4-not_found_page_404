@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Redirecting to youtube
 
-set -x
 
 echo -e "\t>>> Updating sys, installing Nginx and starting it...\n"
 sudo apt-get -y  update
