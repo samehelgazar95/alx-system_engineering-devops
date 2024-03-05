@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Redirecting to youtube
 
+set -x
 
 echo -e "\t>>> Updating sys, installing Nginx and starting it...\n"
 sudo apt-get -y  update
@@ -26,9 +27,9 @@ cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.backup
 echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
 
 # Task 3 - 4: Redirecting, Error_404
-echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/error_404.html
-sudo chown -R "$USER":"$USER" /usr/share/nginx/html/error_404.html
-sudo chmod 644 /usr/share/nginx/html/error_404.html
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/error_404.html
+sudo chown -R "$USER":"$USER" /var/www/html/error_404.html
+sudo chmod 644 /var/www/html/error_404.html
 
 sudo tee /etc/nginx/sites-available/default > /dev/null << 'EOF'
 server {
