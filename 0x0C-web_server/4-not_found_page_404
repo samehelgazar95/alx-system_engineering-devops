@@ -36,7 +36,6 @@ server {
         listen [::]:80 default_server;
 
         rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
-		error_page 404 /error_404.html;
 
         root /var/www/html;
 
@@ -47,6 +46,11 @@ server {
         location / {
                 try_files $uri $uri/ =404;
         }
+		error_page 404 /error_404.html;
+		location = /error_404.html{
+			root /var/www/html;
+			internal;
+		}
 }
 EOF
 
