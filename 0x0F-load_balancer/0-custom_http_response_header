@@ -18,9 +18,6 @@ echo -e "\n\t>>> Backing up files & Setting up configurations...\n"
 sudo chown -R "$USER":"$USER" /var/www/html
 sudo chmod -R 755 /var/www/html
 cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.backup
-sudo chown -R "$USER":"$USER" /etc/nginx
-sudo chmod -R 755 /etc/nginx
-cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.backup
 
 # Task 1: Hello World
 echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
@@ -39,7 +36,8 @@ server {
         server_name _;
 
         rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
-		error_page 404 /error_404.html;
+        error_page 404 /error_404.html;
+
         add_header X-Served-By $hostname;
 
         location / {
