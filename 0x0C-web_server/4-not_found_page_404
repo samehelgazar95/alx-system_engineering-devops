@@ -16,7 +16,7 @@ echo -e "\n\t>>> Backing up files & Setting up configurations...\n"
 
 # Give ownership to the user for easy accessing and editing and backing up
 sudo chown -R "$USER":"$USER" /var/www/html
-sudo chmod -R 755 /var/www
+sudo chmod -R 755 /var/www/html
 cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.backup
 sudo chown -R "$USER":"$USER" /etc/nginx
 sudo chmod -R 755 /etc/nginx
@@ -26,7 +26,7 @@ cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.backup
 echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
 
 # Task 3 - 4: Redirecting, Error_404
-echo "Ceci n'est pas une page" > /usr/share/nginx/html/error_404.html
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/error_404.html
 sudo tee /etc/nginx/sites-available/default > /dev/null << 'EOF'
 server {
         listen 80 default_server;
