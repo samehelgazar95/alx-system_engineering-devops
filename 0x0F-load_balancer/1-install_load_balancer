@@ -11,17 +11,9 @@ echo -e "\n\t>>> Adding the configurations to /etc/haproxy/haproxy.cfg...\n"
 sudo tee /etc/haproxy/haproxy.cfg >> /dev/null << 'EOF'
 frontend igazar-frontend
     bind *:80
-    mode http
-    timeout client 30s
-    timeout connect 5s
-    timeout server 30s
     default_backend igazar-tech-backend
 backend igazar-tech-backend
     balance roundrobin
-    mode http
-    timeout client 30s
-    timeout connect 5s
-    timeout server 30s
     server web-01 100.25.152.65:80 check
     server web-02 52.3.242.252:80 check
 EOF
