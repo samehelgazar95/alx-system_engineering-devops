@@ -27,6 +27,9 @@ echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
 
 # Task 3 - 4: Redirecting, Error_404
 echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/error_404.html
+sudo chown -R "$USER":"$USER" /usr/share/nginx/html/error_404.html
+sudo chmod 644 /usr/share/nginx/html/error_404.html
+
 sudo tee /etc/nginx/sites-available/default > /dev/null << 'EOF'
 server {
         listen 80 default_server;
