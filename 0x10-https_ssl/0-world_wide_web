@@ -2,7 +2,7 @@
 # Print domain and subdomain
 
 
-function print_infos() {
+function print_domain_subdomain() {
 dig "$1" | awk '/ANSWER SECTION:/ {getline; sub("'"$1".'", "'"$2".'", $1); print "The subdomain " $1 " is a " $4 " record and points to " $5}'
 }
 
