@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Is it user or not
+
+
+sudo -u "$1" whoami
