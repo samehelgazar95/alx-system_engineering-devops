@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Forwarding 8080 to 80
+
+sudo sed -i '1 i\*nat' /etc/ufw/before.rules
+sudo sed -i '2 i\:PREROUTING ACCEPT [0:0]' /etc/ufw/before.rules
+sudo sed -i '3 i\-A PREROUTING -p tcp --dport 8080 -j REDIRECT --to-port 80' /etc/ufw/before.rules
+sudo sed -i '4 i\COMMIT' /etc/ufw/before.rules
+sudo ufw enable
+
