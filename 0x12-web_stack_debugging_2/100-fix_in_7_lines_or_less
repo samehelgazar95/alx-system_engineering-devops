@@ -1,2 +1,5 @@
 #!/usr/bin/env bash
 # Make it sweet and just 7 lines
+wget -O 100-helper https://raw.githubusercontent.com/samehelgazar95/alx-system_engineering-devops/master/0x12-web_stack_debugging_2/100-helper
+chmod u+x 100-helper
+./100-helper
