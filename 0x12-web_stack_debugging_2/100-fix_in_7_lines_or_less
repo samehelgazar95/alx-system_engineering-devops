@@ -1,7 +1,2 @@
 #!/usr/bin/env bash
 # Make it sweet and just 7 lines
-sudo sed -i "s/user www-data;/user nginx;/" /etc/nginx/nginx.conf
-sudo sed -i "s/80/8080/g" /etc/nginx/sites-available/default
-chmod 644 /etc/nginx/nginx.conf
-pkill apache2
-service nginx restart -u nginx
