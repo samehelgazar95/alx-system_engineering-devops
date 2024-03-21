@@ -7,6 +7,6 @@ yy=$(date +"%Y")
 backup_file="$dd-$mm-$yy.tar.gz"
 
 mysqldump -u root -p "$1" --all-databases > backup.sql
-tar -cvzf "$backup_file" backup.sql
+tar -czvf "$backup_file" backup.sql
 
 echo "Mysql backup created successfuly: $backup_file"
