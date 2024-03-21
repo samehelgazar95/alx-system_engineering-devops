@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Backups the database
+
+date_str = $(date +%d-%m-%y)
+backup_file = "${date_str}.tar.gz"
+
+mysqldump -u root -p "$1" --all-databases > backup.sql
+tar -czvf "$backup_file" backup.sql
+
+echo "Mysql backup created successfuly: $backup_file"
+exit 0
+
