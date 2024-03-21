@@ -2,7 +2,7 @@
 # Backups the database
 
 
-backup_file="$(date +%d-%m-%Y)".tar.z
+backup_file="$(date +%d-%m-%Y)".tar.gz
 
 mysqldump -u root -p "$1" --all-databases > backup.sql
 tar -cvzf "$backup_file" backup.sql
