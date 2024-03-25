@@ -15,7 +15,7 @@ if __name__ == "__main__":
     done_todos = requests.get(todos_url, params=done_params).json()
     all_todos = requests.get(todos_url, params=todos_params).json()
 
-    name = users[0]["name"]
+    name = users[0].get('name')
     done_len = len(done_todos)
     all_todos_len = len(all_todos)
 
