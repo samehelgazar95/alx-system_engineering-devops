@@ -1,26 +1,24 @@
 #!/usr/bin/python3
 """ Fetching data """
-import requests
+from requests import get
 from sys import argv
 
 
 if __name__ == "__main__":
-    users_params = {'id': argv[1]}
-    todos_params = {'userId': argv[1]}
-    done_params = {'userId': argv[1], "completed": "true"}
-    users_url = "https://jsonplaceholder.typicode.com/users"
-    todos_url = "https://jsonplaceholder.typicode.com/todos"
+    url = 'https://jsonplaceholder.typicode.com'
+    user_id = argv[1]
+    params = {'userId': argv[1]}
 
-    users = requests.get(users_url, params=users_params).json()
-    done_todos = requests.get(todos_url, params=done_params).json()
-    all_todos = requests.get(todos_url, params=todos_params).json()
+    user = get(f"{url}/users/{user_id}").json()
+    all_todos = get(f"{url}/todos", params=params).json()
 
-    name = users[0].get('name')
-    done_len = len(done_todos)
-    all_todos_len = len(all_todos)
+    completed = [t['title'] for t in all_todos if t['completed']]
+
+    name = user.get('name')
+    todos_len = len(all_todos)
+    completed_len = len(completed)
 
     print('Employee {} is done with tasks({}/{}):'.format(
-        name, done_len, all_todos_len))
-
-    for todo in done_todos:
-        print("\t {}".format(todo["title"]))
+        name, completed_len, todos_len))
+    for todo in completed:
+        print("\t {}".format(todo))
