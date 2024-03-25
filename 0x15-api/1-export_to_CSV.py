@@ -6,8 +6,8 @@ from sys import argv
 
 
 if __name__ == '__main__':
-    filename = 'USER_ID.csv'
     user_id = argv[1]
+    filename = f'{user_id}.csv'
     params = {'userId': argv[1]}
     url = 'https://jsonplaceholder.typicode.com'
 
