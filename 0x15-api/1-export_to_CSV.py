@@ -12,14 +12,16 @@ if __name__ == '__main__':
     url = 'https://jsonplaceholder.typicode.com'
 
     user = get(f"{url}/users/{user_id}").json()
-    all_todos = get(f"{url}/todos", params=params).json()
+    todos = get(f"{url}/todos", params=params).json()
 
-    csv_data = []
-
-    for t in all_todos:
-        temp = [t.get('userId'), user.get('username'),
-                t.get('completed'), t.get('title')]
-        csv_data.append(temp)
+    csv_data = [
+        [
+            todo.get('userId'),
+            user.get('username'),
+            todo.get('completed'),
+            todo.get('title')
+            ] for todo in todos
+    ]
 
     with open(filename, 'w', newline='') as file:
         writer = csv.writer(file, quoting=csv.QUOTE_ALL)

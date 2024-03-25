@@ -14,13 +14,15 @@ if __name__ == '__main__':
     user = get(f"{url}/users/{user_id}").json()
     todos = get(f"{url}/todos", params=params).json()
 
-    json_data = {user_id: [
-        {
-            'task': todo.get('title'),
-            'completed': todo.get('completed'),
-            'username': user.get('username')
-        } for todo in todos
-    ]}
+    json_data = {
+        user_id: [
+            {
+                'task': todo.get('title'),
+                'completed': todo.get('completed'),
+                'username': user.get('username')
+                } for todo in todos
+            ]
+        }
 
     with open(filename, 'w') as file:
         json.dump(json_data, file)
