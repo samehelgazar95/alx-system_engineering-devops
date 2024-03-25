@@ -18,7 +18,7 @@ if __name__ == '__main__':
                 'username': user.get('username'),
                 'task': todo.get('title'),
                 'completed': todo.get('completed')
-            } for todo in todos
+            } for todo in todos if todo.get('userId') == user.get('id')
             ] for user in users
     }
 
