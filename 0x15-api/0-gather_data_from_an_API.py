@@ -4,10 +4,10 @@ from requests import get
 from sys import argv
 
 
-if __name__ == "__main__":
-    url = 'https://jsonplaceholder.typicode.com'
+if __name__ == '__main__':
     user_id = argv[1]
     params = {'userId': argv[1]}
+    url = 'https://jsonplaceholder.typicode.com'
 
     user = get(f"{url}/users/{user_id}").json()
     all_todos = get(f"{url}/todos", params=params).json()
