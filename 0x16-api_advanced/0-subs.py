@@ -14,7 +14,8 @@ def number_of_subscribers(subreddit):
     """
     url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
     try:
-        res = get(url, headers={'User-agent': 'app/1.0'})
+        res = get(url, headers={'User-agent': 'app/1.0'},
+                  allow_redirects=False)
         data = res.json()
         return data['data']['subscribers']
     except Exception as e:
