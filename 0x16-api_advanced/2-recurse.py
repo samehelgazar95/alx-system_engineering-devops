@@ -42,11 +42,11 @@ def recurse(subreddit, hot_list=[], page=1, limit=100):
 
     result = response.json()
 
-    if 'children' in result['data']:
+    if 'children' in result['data'] and 'data' in result:
         for child in result['data']['children']:
             hot_list.append(child['data']['title'])
 
-    if 'after' in result['data']:
+    if 'after' in result['data'] and 'data' in result:
         page += 1
         return recurse(subreddit, hot_list, page)
 
