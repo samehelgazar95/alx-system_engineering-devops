@@ -48,6 +48,6 @@ def recurse(subreddit, hot_list=[], page=1, limit=100):
 
     if 'after' in result['data']:
         page += 1
-        recurse(subreddit, hot_list, page)
+        return recurse(subreddit, hot_list, page)
 
     return hot_list
