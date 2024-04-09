@@ -19,8 +19,9 @@ def top_ten(subreddit):
     try:
         res = get(url, headers={'User-agent': 'app/1.0'},
                   allow_redirects=False)
-        data = res.json()
-        for post in data['data']['children']:
-            print(post['data']['title'])
+        if res.status_code == 200:
+            data = res.json()
+            for post in data['data']['children']:
+                print(post['data']['title'])
     except Exception as e:
         print(None)
