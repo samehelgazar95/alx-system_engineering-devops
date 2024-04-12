@@ -1,54 +1,35 @@
 #!/usr/bin/python3
-"""
-returns the number of subscribers (not active users,
-total subscribers) for a given subreddit
-"""
-from requests import get
+"""Script to paginate response"""
+
+import requests
 
 
 def recurse(subreddit, hot_list=[], page=1, limit=100):
+    """A recursive function that queries the Reddit API
+    returns a list containing the titles
+    of all hot articles for a given subreddit.
     """
-    Fetching subreddit
-        Return: the number of subscribers (not active users, total subscribers)
-        for a given subreddit, if an invalid subreddit is given, return 0.
-    result = {
-    'data': {
-        'children': {
-            'data':{
-                'title': '.......'
-                }
-            },
-        'children': {
-            'data':{
-                'title': '.......'
-                }
-            },
-        'after': '...'
-        }
-    }
-    """
+
     if len(hot_list) >= limit:
         return hot_list
 
-    url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
-    headers = {'User-agent': 'ALX'}
+    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
     params = {"page": page}
+    headers = {
+        "User-Agent": "Mozilla"
+    }
 
-    response = get(url, headers=headers, params=params,
-                   allow_redirects=False)
-
-    if (response.status_code == 404):
+    res = requests.get(url, params=params, headers=headers)
+    if res.status_code == 404:
         return None
+    data = res.json()
 
-    result = response.json()
+    if "data" in data and "children" in data["data"]:
+        articles = data["data"]["children"]
+        for article in articles:
+            hot_list.append(article["data"]["title"])
 
-    if 'children' in result['data'] and 'data' in result:
-        childs = result['data']['children']
-        for child in childs:
-            hot_list.append(child['data']['title'])
-
-    if 'after' in result['data'] and 'data' in result:
+    if "data" in data and "after" in data["data"]:
         page += 1
         return recurse(subreddit, hot_list, page)
-
     return hot_list
