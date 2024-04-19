@@ -1,6 +1,5 @@
 server {
         listen 80 default_server;
-        listen [::]:80 default_server;
 
         # use ip as domain name
         server_name 100.25.152.65;
@@ -21,12 +20,8 @@ server {
                 internal;
         }
 
-        rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
-                error_page 404 /error_404.html;
-
         location /hbnb_static/ {
                 alias /data/web_static/current/;
-                expires 30d;
         }
 
         location = /airbnb-onepage/ {
