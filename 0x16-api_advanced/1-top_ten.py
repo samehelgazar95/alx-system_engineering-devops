@@ -12,16 +12,11 @@ def top_ten(subreddit):
         Return: the number of subscribers (not active users, total subscribers)
         for a given subreddit, if an invalid subreddit is given, return 0.
     """
-    listing = 'hot'
-    limit = 10
-    url = 'https://www.reddit.com/r/{}/{}.json?limit={}'.format(
-        subreddit, listing, limit)
-    try:
-        res = get(url, headers={'User-agent': 'app/1.0'},
-                  allow_redirects=False)
-        if res.status_code == 200:
-            data = res.json()
-            for post in data['data']['children']:
-                print(post['data']['title'])
-    except Exception as e:
+    url = f'https://www.reddit.com/r/{subreddit}/hot.json?limit=10'
+    res = get(url, headers={'User-Agent': 'app/1.0'})
+    if res.status_code == 200:
+        data = res.json()
+        for post in data['data']['children']:
+            print(post['data']['title'])
+    else:
         print(None)
